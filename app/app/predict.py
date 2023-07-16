@@ -1,12 +1,13 @@
+import pickle
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-import pickle
 
 
 def predict_price(new_data):
-    with open('trained_model2.pkl', 'rb') as file:
+    new_data = pd.DataFrame(new_data)
+    with open('app/trained_model2.pkl', 'rb') as file:
         model, scaler, columns = pickle.load(file)
 
     new_data_encoded = pd.get_dummies(new_data, columns=['Тип/Кл.обсл.'])
